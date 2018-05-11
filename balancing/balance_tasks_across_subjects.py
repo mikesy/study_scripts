@@ -10,9 +10,9 @@ class randomlyBalanceExp(object):
         self.num_subjects = int(arg[1])
         self.num_tasks = int(arg[2])
         print("You specified", self.num_subjects, "subjects and", self.num_tasks, "tasks")
-        self.get_exp_task()
+        self.getExpTask()
 
-    def get_exp_task(self):
+    def getExpTask(self):
         task_count =  np.zeros([self.num_tasks,self.num_tasks])  #row is task and column is count of times used in that position
         task_array = np.zeros([self.num_subjects,self.num_tasks])
         balancing_tol = 2
