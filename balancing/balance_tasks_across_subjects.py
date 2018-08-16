@@ -51,15 +51,10 @@ class randomlyBalanceExp(object):
             task_count[i] = task_count[i][:,0:self.tasks_per_subject]
             task_array[i] = task_array[i][:, 0:self.tasks_per_subject]
         self.print_results(task_count, task_array)
-        # print("This is the task count.... each row is the task and the column represents the amount the task has been in that position")
-        # print(task_count)
-        # print("The task array... each row is a subject corresponding to a task sequence")
-        # print(task_array)
 
     def getSemiRandPerm(self,count_array,task_num):
         task_set_found = False
         min_count = np.min(count_array)
-        #remaining_positions = [i for i in range(0,task_num)]
         
         task_set_2 = np.empty(task_num)
         a = np.where(count_array==min_count)
