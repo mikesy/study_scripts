@@ -32,9 +32,7 @@ for sub_group in subject_groups:
         start_count = 0
         txt_str = "Subject %i \n" %sub_i
         for trial_i, interface_num in enumerate(trials):
-            
             assist_levels_in_interface = assistance_levels[trial_i][sub_i]
-            #print(assistance_levels)
             for assist_level in assist_levels_in_interface:
                 print(start_count)
                 start_pos = int(start_positions[sub_i, start_count])
@@ -42,7 +40,6 @@ for sub_group in subject_groups:
                 txt_str += "-----------------------------------------------------\n"
                 txt_str += feature_names[0][int(interface_num)] + "\t "
                 txt_str += feature_names[1][int(assist_level)] + "\t "
-                #txt_str += feature_names[0][int(feature0[sub_i, trial_i])] + "\t \t"
                 txt_str += feature_names[2][start_pos] + "\n"
                 txt_str += "-----------------------------------------------------\n"
                 txt_str += "MC10: \n"
