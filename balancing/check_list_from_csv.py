@@ -7,7 +7,7 @@ Just a linear script since it's not meant to be portable
 
 import numpy as np  
 
-subject_groups = ['ui','sci','als','cp']
+subject_groups = ['sci','als','cp']
 interface_names = ['joy','ha']
 for sub_group in subject_groups:
     feature0 = np.genfromtxt(sub_group+'_interface_balance.csv', delimiter=',')
@@ -32,7 +32,7 @@ for sub_group in subject_groups:
         start_count = 0
         txt_str = "Subject %i \n" %sub_i
         for trial_i, interface_num in enumerate(trials):
-            assist_levels_in_interface = assistance_levels[trial_i][sub_i]
+            assist_levels_in_interface = assistance_levels[int(interface_num)][sub_i]
             for assist_level in assist_levels_in_interface:
                 print(start_count)
                 start_pos = int(start_positions[sub_i, start_count])
