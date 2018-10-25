@@ -6,40 +6,12 @@ import numpy as np
 import operator      #makes it easier to pull sub-topics using attrgetter
 
 
-#################################################
-##### TUNABLE PARAMETERs #######################
-#################################################
-mnt_folder = '/mnt/NUdata/'
-subjects = ['U00']
-interfaces = ['JOY', 'HA','SNP']
-assistance_levels = ['A0','A1','A2']
-
-output_folder = 'nparrays'
-
-dataroot = mnt_folder + '2018-Adaptive-Autonomy-Wheelchair/data/study/'
-
-# topic_names = ['/task_status',
-#                 '/task_status',
-#                 '/joy_cont',
-#                 '/joy_cont_HA',
-#                 '/CAinfo']
-
-# header_time_stamp = ['header',
-#                     'header',
-#                     '']
-# sub_topics = [['header.frame_id','include','success','collision'],
-#     ]
-topic_names = ['/task_status']
-
-
-sub_topics = [['header.frame_id', 'include', 'success', 'collision'],
-              ]
-
 class bagObject:
-    def __init__(self,bag_name,topics, subtopics):
+    def __init__(self,bag_name,topics, subtopics,save_prefix):
         self.bag = rosbag.Bag(bag_name)
         self.topics = topics
         self.subtopics = subtopics
+        self.save_prefix = save_prefix
         self.start_time = 0
         self.topic_lengths = {}#np.zeros(len(topics))
         self.get_bag_info_clean()
@@ -91,10 +63,11 @@ class bagObject:
                     
                 time_index += 1
         #save...
-        print(t_array)
-        print(data_array)
+            filename = self.save_prefix + '_' + self.topics[topic_index][1:]   # skip the '/' at beginning of topic name
+            np.save(filename, data_array)
+            filename += '_time'
+            np.save(filename, t_array)
+            print(t_array)
+            print(data_array)
 
-if __name__ == '__main__':
-    # + subjects[0] + '_' + interfaces[0] + '_' +
-    bagname = dataroot + subjects[0] + '/bags/' + '/U00_JOY_A0_S3_2018-09-06-17-44-33.bag'
-    bo = bagObject(bagname,topic_names,sub_topics)
+
