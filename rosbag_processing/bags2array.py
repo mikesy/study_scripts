@@ -50,7 +50,6 @@ class bagObject:
             self.start_times.append(info_dict['start'])
         self.start_time_check()
 
-
     ## functions to provide user with info about the bag, to be called in separate script
     def get_bag_info_clean(self):
         print("Printing information about topics with more than 1 messages")
@@ -70,7 +69,6 @@ class bagObject:
         print("------------")
 
     def convert_topics_to_nparray(self):
-
         for topic_index, topic in enumerate(self.topics):
             total_topic_length = self.get_total_topic_length(topic)
             t_array = np.zeros(total_topic_length)
@@ -93,7 +91,6 @@ class bagObject:
         topic_length_total = 0
         for topic_length_dict in self.topic_lengths:
             topic_length_total += topic_length_dict[topic]
-            print(topic_length_total)
         return topic_length_total
     ## checks and misc
     def start_time_check(self):
