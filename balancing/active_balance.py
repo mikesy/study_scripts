@@ -57,6 +57,7 @@ for row_i, row in enumerate(csv_dict['interface']):
             pos += 1
             looking_for_joy = False 
             for i in range(3):
+                print(int(csv_dict['assistance'][row_i][t_i+i]))
                 balance_dict['assistance_joy'][int(csv_dict['assistance'][row_i][t_i+i]), i] += 1
         
                 
@@ -85,9 +86,16 @@ for row_i, row in enumerate(csv_dict['start']):
         pos+= 1
 
 
-        
-
 print("interface array",balance_dict['interface'])
-fo = get_next_balance(balance_dict['interface'])
+# fo = get_next_balance(balance_dict['interface'])
+print("balance dict",balance_dict)
+order_dict = {}
+orders = ['interface','assistance_joy','assistance_ha','start']
+for order in orders:
+    print(order, balance_dict[order])
+    order_dict[order] = balance_first_pos_priority(balance_dict[order])
+    print(order, order_dict[order])
+# interface_order = balance_first_pos_priority(balance_dict['interface'])
+# joy_assistance_order = balance_first_pos_priority(balance_dict['assistance_joy'])
 
-print(fo)
+# print(fo)
