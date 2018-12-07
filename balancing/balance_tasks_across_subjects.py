@@ -7,7 +7,9 @@ import argparse
 
 class randomlyBalanceExp(object):
     """docstring for randomlyBalanceExp.
-        IMPORTANT: This assumes all features are independent
+        IMPORTANT: This assumes all features are independent and
+                   and that each subject will complete the entire experiment
+                   
         NOTE: please verify the balancing by hand, at least for a small case to enure this works for your scenario as I haven't tested all cases
     """
     
