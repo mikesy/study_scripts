@@ -1,9 +1,6 @@
-#!/usr/bin/python3
-""" 
-This is an example of how to use the csv data to make yourself a checklist
-Just a linear script since it's not meant to be portable
 """
-
+functions used in active_balance.py and balance_tasks_across_subjects.py
+"""
 
 def print_trial_header(tags):
     txt_str = "-----------------------------------------------------\n"
