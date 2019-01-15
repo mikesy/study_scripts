@@ -72,13 +72,15 @@ class bagObject:
         for topic_index, topic in enumerate(self.topics):
             total_topic_length = self.get_total_topic_length(topic)
             t_array = np.zeros(total_topic_length)
-            data_array = np.empty([len(self.subtopics[topic_index]), total_topic_length],dtype=object)
+            data_array = np.empty([total_topic_length, len(
+                self.subtopics[topic_index])], dtype=object)
             time_index = 0
             for bag in self.bags:
                 for (unused,msg,t) in bag.read_messages(topics=[topic]):
                     t_array[time_index] = t.secs + t.nsecs*1e-9
                     for subtopic_index, subtopic in enumerate(self.subtopics[topic_index]):
-                        data_array[subtopic_index,time_index] = operator.attrgetter(subtopic)(msg)
+                        data_array[time_index, subtopic_index] = operator.attrgetter(
+                            subtopic)(msg)
                         
                     time_index += 1
         #save...
