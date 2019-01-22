@@ -84,10 +84,25 @@ class bagObject:
                         
                     time_index += 1
         #save...
-            filename = self.save_prefix + '_' + self.topics[topic_index][1:]   # skip the '/' at beginning of topic name
+            filename = self.get_filename_from_topic(topic_index)
+            # filename = self.save_prefix + '_' + self.topics[topic_index][1:]   # skip the '/' at beginning of topic name
             np.save(filename, data_array)
             filename += '_time'
             np.save(filename, t_array)
+
+    def get_filename_from_topic(self, topic_index):
+        if not self.topics[topic_index][0] == '/':
+            raise ValueError("invalid topic name")
+        topicname = self.topics[topic_index][1:]  # skip the '/' at beginning of topic name
+        topicname_split = topicname.split('/')
+        if len(topicname_split) >= 2:
+            topicname = ''
+            for s_i, sub_name in enumerate(topicname_split):
+                topicname += sub_name
+                if s_i < len(topicname_split)-1:
+                     topicname += '_'
+        filename = self.save_prefix + '_' + topicname
+        return filename
 
     def get_total_topic_length(self, topic):
         topic_length_total = 0
