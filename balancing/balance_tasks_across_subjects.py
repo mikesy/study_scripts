@@ -99,6 +99,8 @@ class randomlyBalanceExp(object):
             filename = "feature%i.csv" % i
             np.savetxt(filename , task_array[i],delimiter=',')
             print("results of feature",i, "have been printed to", filename)
+            filename = "feature%i.npy" % i
+            np.save(filename, task_array)
         print("rows are each subject where the elements represent the task order (left to right) for each subject")
         
 if __name__ =="__main__":
